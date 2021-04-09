@@ -1,0 +1,25 @@
+<div class="mt-lg-5">
+  <h2>{{editMode? 'MODIFIER PRODUIT' : 'AJOUTER  PRODUIT'}}</h2>
+  <form [formGroup]="productForm" (ngSubmit)="onValidate()" >
+    <div class="form-group">
+      <label for="name">Nom</label>
+      <input class="form-control w-25"  type="text" id="name" formControlName="name">
+    </div>
+
+    <div *ngIf="!editMode" class="form-group">
+      <label for="ref">Reference du produit:</label>
+      <input type="text" class="form-control w-25" id="ref" formControlName="sku">
+    </div>
+
+    <div class="form-group">
+      <label for="prix">Prix du produit:</label>
+      <input type="text" class="form-control w-25" id="prix" formControlName="unitPrice">
+    </div>
+    <div class="form-group">
+      <label for="qte">Quantity:</label>
+      <input type="text" class="form-control w-25" id="qte" formControlName="unitsInStock">
+    </div>
+    <button type="submit" class="btn btn-primary">{{editMode ? 'Modifier' : 'Ajouter'}}</button>
+  </form>
+
+</div>

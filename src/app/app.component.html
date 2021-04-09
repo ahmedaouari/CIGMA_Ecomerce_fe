@@ -1,0 +1,39 @@
+<div class="container-fluid" >
+  <nav class="navbar navbar-dark bg-dark">
+    <div class="container-fluid">
+      <a appAccessControl routerLink="/admin/dashboard" class="text-white font-weight-normal"> Admin</a>
+      <a routerLink="/products" class="text-white font-weight-normal"> Home</a>
+
+      <form class="d-flex input-group w-auto m-1">
+        <input
+          type="search"
+          class="form-control"
+          placeholder="Chercher un produit"
+          aria-label="Search"
+        />
+
+        <button
+          class="btn btn-success "
+          type="button"
+          data-mdb-ripple-color="dark"
+        >
+          Rechercher
+        </button>
+      </form>
+
+
+      <app-status [basket]="basket"></app-status>
+      <button
+        class="btn btn-danger"
+        type="button"
+        data-mdb-ripple-color="dark"
+        (click)="logout()"
+         >
+        Logout
+      </button>
+    </div>
+  </nav>
+</div>
+<div class="container">
+  <router-outlet></router-outlet>
+</div>

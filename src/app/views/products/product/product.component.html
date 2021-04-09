@@ -1,0 +1,31 @@
+<div class="container mt-5">
+  <td><button class="btn btn-warning mb-2"  (click)="toAddProduct()"> Ajouter Produit</button></td>
+  <table class="table table-dark">
+    <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">Reference</th>
+      <th scope="col">Prix</th>
+      <th scope="col">Quantité</th>
+      <th scope="col" >Action</th>
+
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let product of products; index as i">
+      <th scope="row">{{i}}</th>
+      <td>{{product.name}}</td>
+      <td>{{product.sku}}</td>
+      <td>{{product.unitPrice | currency: 'MAD' }}</td>
+      <td>{{product.unitsInStock }}</td>
+
+      <td><button class="btn btn-primary" (click)="editProduct(product.productId)">Modifier</button>
+     <button class="btn btn-danger ml-2">Supprimer</button></td>
+
+
+    </tr>
+    </tbody>
+  </table>
+
+</div>

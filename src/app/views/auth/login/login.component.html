@@ -1,0 +1,76 @@
+
+<ng-template [ngIf]="toLogin" [ngIfElse]="loading">
+
+    <div class="login-form">
+      <form [formGroup]="signInForm" (ngSubmit)="onSignIn()">
+
+        <h4 class="modal-title">S'authentifier</h4>
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Username" formControlName="nickname">
+        </div>
+        <div class="form-group">
+          <input type="password" class="form-control" placeholder="Password" formControlName="password">
+        </div>
+        <div class="form-group small clearfix">
+          <a href="#" class="forgot-link" routerLink="/request/reset-password">Mot de passe oublié?</a>
+        </div>
+        <input type="submit" class="btn btn-primary btn-block btn-lg" value="Se connecter">
+      </form>
+      <div class="text-center small">Vous n'avez pas un compte? <a (click)="switchToSignUp()">S'enregistrer</a></div>
+    </div>
+
+</ng-template>
+
+<ng-template #loading>
+
+    <div class="login-form">
+      <div class="alert alert-success" role="alert" *ngIf="alertSuccess">
+        Merci pour votre inscrption, Vos informations de connexion vous ont été envoyé.
+      </div>
+      <div class="alert alert-danger" role="alert" *ngIf="alertFail">
+        Une erreur est survenue , Merci de réessayer plus tard.
+      </div>
+      <form [formGroup]="signUpForm" (ngSubmit)="onSignUp()">
+
+        <h4 class="modal-title">Créer un compte</h4>
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Nom"  formControlName="lastName">
+        </div>
+        <div *ngIf="signUpForm.controls['lastName'].invalid  && (signUpForm.controls['lastName'].dirty || signUpForm.controls['lastName'].touched)">
+          <div class="text-danger" *ngIf="signUpForm.controls['lastName'].errors.required">Le nom est requis</div>
+        </div>
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Prenom"  formControlName="firstName">
+        </div>
+        <div *ngIf="signUpForm.controls['firstName'].invalid  && (signUpForm.controls['firstName'].dirty || signUpForm.controls['firstName'].touched)">
+          <div class="text-danger" *ngIf="signUpForm.controls['firstName'].errors.required">Le prenom est requis</div>
+        </div>
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Email"  formControlName="email">
+        </div>
+        <div *ngIf="signUpForm.controls['email'].invalid  && (signUpForm.controls['email'].dirty || signUpForm.controls['email'].touched)">
+          <div class="text-danger" *ngIf="signUpForm.controls['email'].errors.required">Le email est requis</div>
+          <div class="text-danger" *ngIf="signUpForm.controls['email'].errors.email">L'address email doit etre valide</div>
+        </div>
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Username"  formControlName="nickname">
+        </div>
+        <div *ngIf="signUpForm.controls['nickname'].invalid  && (signUpForm.controls['nickname'].dirty || signUpForm.controls['nickname'].touched)">
+          <div class="text-danger" *ngIf="signUpForm.controls['nickname'].errors.required">Le Username est requis</div>
+        </div>
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Telephone"  formControlName="phoneNumber">
+        </div>
+        <div *ngIf="signUpForm.controls['phoneNumber'].invalid  && (signUpForm.controls['phoneNumber'].dirty || signUpForm.controls['phoneNumber'].touched)">
+          <div class="text-danger" *ngIf="signUpForm.controls['phoneNumber'].errors.required" >Le Telephone est requis</div>
+          <div class="text-danger"*ngIf="signUpForm.controls['phoneNumber'].errors.pattern" >Numéro de téléphone invalide</div>
+        </div>
+        <input type="submit" class="btn btn-primary btn-block btn-lg" value="Enregistrer">
+      </form>
+      <div class="text-center small">Vous avez déjà un compte? <a (click)="switchToSignUp()">Se connecter</a></div>
+    </div>
+
+</ng-template>
+
+
+
